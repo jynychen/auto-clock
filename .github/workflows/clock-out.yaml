@@ -1,0 +1,21 @@
+name: clock-out
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "58 12 * * 1-5"
+    - cron: "58 17 * * 1-5"
+
+jobs:
+  clock-out:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip setuptools wheel requests
+      - name: Clock Out
+        run: python main.py out
