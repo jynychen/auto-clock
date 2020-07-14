@@ -17,6 +17,8 @@ jobs:
           python-version: '3.x'
       - name: Install dependencies
         run: python -m pip install --upgrade pip setuptools wheel requests
+      - name: Random Wait
+        run: sleep $(( 20 + $RANDOM % 200 ))
       - name: Clock Out
         env:
           USERID: ${{ secrets.USERID }}
