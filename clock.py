@@ -1,6 +1,7 @@
 import os, sys
 import string
 import requests
+from datetime import datetime, timezone, timedelta
 
 
 def req(uri, xapikey):
@@ -19,7 +20,8 @@ def clock(action, userid, xapikey):
     else:
         exit(1)
 
-    print(res.json()['history'][-1])
+    print(*res.json()['history'], sep="\n")
+    print(datetime.now(timezone(timedelta(hours=+8))).isoformat(timespec="seconds"))
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
